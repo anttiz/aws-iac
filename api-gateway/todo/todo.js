@@ -5,6 +5,6 @@ exports.handler = async (event) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify("Welcome to Royal " + tokenDecode.name + "!"),
+    body: JSON.stringify("Welcome to test TODO " + tokenDecode.name + "!"),
   };
 };
