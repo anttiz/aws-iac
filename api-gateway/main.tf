@@ -41,7 +41,7 @@ resource "aws_api_gateway_method_response" "check_in_method_response" {
 resource "aws_api_gateway_deployment" "api_deployment" {
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   stage_name  = "DEV"
-  depends_on  = ["aws_api_gateway_method.todo_api_method"]
+  depends_on  = [aws_api_gateway_method.todo_api_method]
 
   lifecycle {
     create_before_destroy = true

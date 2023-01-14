@@ -29,3 +29,5 @@ override.tf.json
 # example: *tfplan*
 node_modules
 *.zip
+
+notes.log

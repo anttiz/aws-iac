@@ -29,6 +29,10 @@ module "todo_cognito" {
   source = "./cognito"
 }
 
+module "todo_dynamodb" {
+  source = "./dynamodb"
+}
+
 module "todo_api" {
   source                 = "./api-gateway"
   cognito_user_arn       = module.todo_cognito.todo_cognito_user_pool_arn
