@@ -29,5 +29,5 @@ resource "aws_lambda_permission" "apigw_create_lambda_permission" {
   function_name = aws_lambda_function.lambda_create_todo.function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "arn:aws:execute-api:${var.aws_region}:${var.account_id}:${aws_api_gateway_rest_api.rest_api.id}/*/${aws_api_gateway_method.todo_api_method.http_method}${aws_api_gateway_resource.todo_resource.path}"
+  source_arn = "arn:aws:execute-api:${var.aws_region}:${var.account_id}:${aws_api_gateway_rest_api.rest_api.id}/*/${aws_api_gateway_method.create_todo_api_method.http_method}${aws_api_gateway_resource.create_todo_resource.path}"
 }
