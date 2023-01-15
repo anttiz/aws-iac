@@ -6,7 +6,7 @@ const documentClient = new DynamoDB.DocumentClient();
 
 export async function handler(event, context) {
   // create a new object
-
+  console.log('Reached lambda', event)
   const body = event.body;
   const newTodo = {
     ...body,

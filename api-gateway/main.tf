@@ -44,7 +44,7 @@ resource "aws_api_gateway_integration" "todo_api_integration" {
   http_method             = aws_api_gateway_method.todo_api_method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.lambda_todo.invoke_arn
+  uri                     = var.todo_lambda_invoke_arn
 }
 
 # create-todo endpoint
@@ -80,7 +80,7 @@ resource "aws_api_gateway_integration" "create_todo_api_integration" {
   http_method             = aws_api_gateway_method.create_todo_api_method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.lambda_create_todo.invoke_arn
+  uri                     = var.create_todo_lambda_invoke_arn
 }
 
 // All methods here
@@ -108,14 +108,14 @@ resource "aws_iam_role_policy" "dynamodb-lambda-policy" {
   name = "dynamodb_lambda_policy"
   role = aws_iam_role.lambda_exec.id
   policy = jsonencode({
-     "Version" : "2012-10-17",
-     "Statement" : [
-       {
-          "Effect" : "Allow",
-          "Action" : ["dynamodb:*"],
-          "Resource" : "${var.dynamodb_table_arn}"
-       }
-     ]
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : ["dynamodb:*"],
+        "Resource" : "${var.dynamodb_table_arn}"
+      }
+    ]
   })
 }
 
@@ -139,4 +139,22 @@ resource "aws_iam_role" "lambda_exec" {
       }
     ]
   })
+}
+
+resource "aws_lambda_permission" "apigw_create_lambda_permission" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = var.create_todo_lambda_function_name
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "arn:aws:execute-api:${var.aws_region}:${var.account_id}:${aws_api_gateway_rest_api.rest_api.id}/*/${aws_api_gateway_method.create_todo_api_method.http_method}${aws_api_gateway_resource.create_todo_resource.path}"
+}
+
+resource "aws_lambda_permission" "apigw_lambda_permission" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = var.todo_lambda_function_name
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "arn:aws:execute-api:${var.aws_region}:${var.account_id}:${aws_api_gateway_rest_api.rest_api.id}/*/${aws_api_gateway_method.todo_api_method.http_method}${aws_api_gateway_resource.todo_resource.path}"
 }

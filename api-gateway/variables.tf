@@ -1,7 +1,5 @@
 variable "cognito_user_arn" {}
 
-variable "util_layer_arn_array" {}
-
 variable "account_id" {}
 
 variable "aws_region" {
@@ -16,10 +14,22 @@ variable "api_status_response" {
   default     = ["200", "500"]
 }
 
-variable "dynamodb_table_name" {
+variable "dynamodb_table_arn" {
   type = string
 }
 
-variable "dynamodb_table_arn" {
+variable "todo_lambda_invoke_arn" {
+  type = string
+}
+
+variable "todo_lambda_function_name" {
+  type = string
+}
+
+variable "create_todo_lambda_invoke_arn" {
+  type = string
+}
+
+variable "create_todo_lambda_function_name" {
   type = string
 }
