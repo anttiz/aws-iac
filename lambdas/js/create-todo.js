@@ -1,16 +1,16 @@
-import { DynamoDB } from "aws-sdk";
+const AWS = require("aws-sdk");
 
 const TODO_TABLE = process.env.TODO_TABLE;
 
-const documentClient = new DynamoDB.DocumentClient();
+const documentClient = new AWS.DynamoDB.DocumentClient();
 
-export async function handler(event, context) {
+module.exports.handler = async (event, context) => {
   // create a new object
-  console.log('Reached lambda', event)
+  console.log("Reached lambda", event);
   const body = event.body;
   const newTodo = {
     ...body,
-    id: Date.now(),
+    id: String(Date.now()),
     expiryPeriod: Date.now(), // specify TTL
   };
 
@@ -26,4 +26,4 @@ export async function handler(event, context) {
   // return the created object
 
   return { statusCode: 200, body: JSON.stringify(newTodo) };
-}
+};
