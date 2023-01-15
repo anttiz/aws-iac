@@ -29,11 +29,17 @@ module "todo_cognito" {
   source = "./cognito"
 }
 
+module "todo_dynamo" {
+  source = "./dynamo-db"
+}
+
 module "todo_api" {
-  source                 = "./api-gateway"
-  cognito_user_arn       = module.todo_cognito.todo_cognito_user_pool_arn
-  api_status_response    = ["200", "500"]
-  aws_region             = var.aws_region
-  account_id             = var.account_id
-  util_layer_arn_array   = module.util_layer.util_layer_arn_array
+  source               = "./api-gateway"
+  cognito_user_arn     = module.todo_cognito.todo_cognito_user_pool_arn
+  api_status_response  = ["200", "500"]
+  aws_region           = var.aws_region
+  account_id           = var.account_id
+  util_layer_arn_array = module.util_layer.util_layer_arn_array
+  dynamodb_table_name  = module.todo_dynamo.todo_table_name
+  dynamodb_table_arn   = module.todo_dynamo.todo_table_arn
 }

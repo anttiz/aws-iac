@@ -2,7 +2,7 @@
 resource "aws_lambda_function" "lambda_create_todo" {
   environment {
     variables = {
-      TODO_TABLE = aws_dynamodb_table.todo_table.name
+      TODO_TABLE = var.dynamodb_table_name
     }
   }
   memory_size   = "128"

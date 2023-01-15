@@ -104,18 +104,6 @@ resource "aws_api_gateway_deployment" "api_create_deployment" {
   }
 }
 
-resource "aws_dynamodb_table" "todo_table" {
-  name           = "todo-table"
-  billing_mode   = "PROVISIONED"
-  read_capacity  = "30"
-  write_capacity = "30"
-  attribute {
-    name = "id"
-    type = "S"
-  }
-  hash_key = "id"
-}
-
 resource "aws_iam_role_policy" "dynamodb-lambda-policy" {
   name = "dynamodb_lambda_policy"
   role = aws_iam_role.lambda_exec.id
@@ -125,7 +113,7 @@ resource "aws_iam_role_policy" "dynamodb-lambda-policy" {
        {
           "Effect" : "Allow",
           "Action" : ["dynamodb:*"],
-          "Resource" : "${aws_dynamodb_table.todo_table.arn}"
+          "Resource" : "${var.dynamodb_table_arn}"
        }
      ]
   })
