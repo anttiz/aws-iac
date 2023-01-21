@@ -14,6 +14,7 @@ resource "aws_lambda_function" "lambda_create_todo" {
   role          = var.lambda_exec_arn
   s3_bucket     = aws_s3_bucket.lambda_bucket.id
   s3_key        = aws_s3_object.lambda_create_todo.key
+  source_code_hash = data.archive_file.lambda_create_todo.output_base64sha256
 }
 
 resource "aws_cloudwatch_log_group" "lambda_create_todo" {

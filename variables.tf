@@ -19,10 +19,12 @@ variable "account_id" {
 
 variable "todo_username" {
   type=string
+  default = "todo"
 }
 
 variable "todo_password" {
   type=string
+  default = "todo1U$"
 }
 
 variable "todo_email" {

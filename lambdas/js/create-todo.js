@@ -6,8 +6,7 @@ const documentClient = new AWS.DynamoDB.DocumentClient();
 
 module.exports.handler = async (event, context) => {
   // create a new object
-  console.log("Reached lambda", event);
-  const body = event.body;
+  const body = JSON.parse(event.body);
   const newTodo = {
     ...body,
     id: String(Date.now()),
@@ -15,8 +14,7 @@ module.exports.handler = async (event, context) => {
   };
 
   // insert it to the table
-
-  await documentClient
+  const result = await documentClient
     .put({
       TableName: TODO_TABLE,
       Item: newTodo,
@@ -24,6 +22,5 @@ module.exports.handler = async (event, context) => {
     .promise();
 
   // return the created object
-
   return { statusCode: 200, body: JSON.stringify(newTodo) };
 };
