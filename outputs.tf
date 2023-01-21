@@ -25,3 +25,7 @@ output "todo_password" {
 output "todo_email" {
   value=var.todo_email
 }
+
+output "todo_aws_region" {
+  value=var.aws_region
+}

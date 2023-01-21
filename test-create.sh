@@ -1,5 +1,6 @@
 API_ID="$(terraform output -raw todo_api_gw_id)"
-API_URL="https://${API_ID}.execute-api.eu-west-1.amazonaws.com"
+AWS_REGION="$(terraform output -raw todo_aws_region)"
+API_URL="https://${API_ID}.execute-api.${AWS_REGION}.amazonaws.com"
 echo ${API_URL}/DEV/create
 
   # -H 'Content-Type: application/json' \
