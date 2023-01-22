@@ -1,5 +1,5 @@
 output "todo_api_url" {
-   value = aws_api_gateway_integration.todo_api_integration.uri
+   value = aws_api_gateway_integration.create_todo_api_integration.uri
  }
 
 output "todo_api_gw_id" {
