@@ -9,7 +9,7 @@ module.exports.handler = async (event, context) => {
   const body = JSON.parse(event.body);
   const newTodo = {
     ...body,
-    id: String(Date.now()),
+    todoId: String(Date.now()),
     expiryPeriod: Date.now(), // specify TTL
   };
 

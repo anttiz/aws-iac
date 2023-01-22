@@ -44,4 +44,6 @@ module "todo_api" {
   dynamodb_table_arn               = module.todo_dynamo.todo_table_arn
   create_todo_lambda_invoke_arn    = module.todo_lambdas.create_todo_lambda_invoke_arn
   create_todo_lambda_function_name = module.todo_lambdas.create_todo_lambda_function_name
+  delete_todo_lambda_invoke_arn    = module.todo_lambdas.delete_todo_lambda_invoke_arn
+  delete_todo_lambda_function_name = module.todo_lambdas.delete_todo_lambda_function_name
 }

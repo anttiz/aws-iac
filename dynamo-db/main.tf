@@ -4,9 +4,9 @@ resource "aws_dynamodb_table" "todo_table" {
   read_capacity  = "30"
   write_capacity = "30"
   attribute {
-    name = "id"
+    name = "todoId"
     type = "S"
   }
-  hash_key = "id"
+  hash_key = "todoId"
 }
 

@@ -25,3 +25,11 @@ variable "create_todo_lambda_invoke_arn" {
 variable "create_todo_lambda_function_name" {
   type = string
 }
+
+variable "delete_todo_lambda_invoke_arn" {
+  type = string
+}
+
+variable "delete_todo_lambda_function_name" {
+  type = string
+}
