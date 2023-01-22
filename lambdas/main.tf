@@ -13,23 +13,10 @@ resource "aws_s3_bucket_acl" "lambda_bucket_acl" {
   acl    = "private"
 }
 
-data "archive_file" "lambda_todo" {
-  type = "zip"
-  source_file = "${path.module}/js/todo.js"
-  output_path = "${path.module}/js/todo.zip"
-}
-
 data "archive_file" "lambda_create_todo" {
   type        = "zip"
   source_file = "${path.module}/js/create-todo.js"
   output_path = "${path.module}/js/create-todo.zip"
-}
-
-resource "aws_s3_object" "lambda_todo" {
-  bucket = aws_s3_bucket.lambda_bucket.id
-  key    = "todo.zip"
-  source = data.archive_file.lambda_todo.output_path
-  etag = filemd5(data.archive_file.lambda_todo.output_path)
 }
 
 resource "aws_s3_object" "lambda_create_todo" {

@@ -21,10 +21,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-module "util_layer" {
-  source = "./util-layer"
-}
-
 module "todo_cognito" {
   source = "./cognito"
 }
@@ -37,7 +33,6 @@ module "todo_lambdas" {
   source              = "./lambdas"
   dynamodb_table_name = module.todo_dynamo.todo_table_name
   lambda_exec_arn     = module.todo_api.lambda_exec_arn
-  util_layer_arn_array             = module.util_layer.util_layer_arn_array
 }
 
 module "todo_api" {
@@ -47,8 +42,6 @@ module "todo_api" {
   aws_region                       = var.aws_region
   account_id                       = var.account_id
   dynamodb_table_arn               = module.todo_dynamo.todo_table_arn
-  todo_lambda_invoke_arn           = module.todo_lambdas.todo_lambda_invoke_arn
-  todo_lambda_function_name        = module.todo_lambdas.todo_lambda_function_name
   create_todo_lambda_invoke_arn    = module.todo_lambdas.create_todo_lambda_invoke_arn
   create_todo_lambda_function_name = module.todo_lambdas.create_todo_lambda_function_name
 }

@@ -5,5 +5,3 @@ variable "dynamodb_table_name" {
 variable "lambda_exec_arn" {
   type = string
 }
-
-variable "util_layer_arn_array" {}

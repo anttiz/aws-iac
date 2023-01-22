@@ -9,5 +9,5 @@ Terraform creation of AWS API Gateway, Lambda, Cognito
 - create user using command `signup.sh`
 - confirm using command `signup-confirm.sh`
 - generate token using command `source get-token.sh`, that exports it to env TEST_TOKEN
-- test API using command `test-todo.sh`
+- previos commands can be combined by running `source login.sh`
 - test create API using command `test-create.sh`

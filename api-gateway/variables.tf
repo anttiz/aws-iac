@@ -18,14 +18,6 @@ variable "dynamodb_table_arn" {
   type = string
 }
 
-variable "todo_lambda_invoke_arn" {
-  type = string
-}
-
-variable "todo_lambda_function_name" {
-  type = string
-}
-
 variable "create_todo_lambda_invoke_arn" {
   type = string
 }
