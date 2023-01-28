@@ -5,7 +5,8 @@ const documentClient = new AWS.DynamoDB.DocumentClient();
 
 module.exports.handler = async (event, context) => {
   console.log('2 got event body', event.body, typeof event.body);
-  const todoId = event.body.todoId;
+  const body = JSON.parse(event.body);
+  const { todoId } = body;
   await documentClient
     .delete({
       TableName: TODO_TABLE,

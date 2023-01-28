@@ -5,6 +5,6 @@ echo ${API_URL}/DEV/delete todoId $1
 
 curl -H "Authorization: Bearer ${TEST_TOKEN}" \
   -X DELETE ${API_URL}/DEV/delete \
-  -d "{'todoId': '$1'}"
+  -d "{\"todoId\": \"$1\"}"
 
 
