@@ -10,4 +10,5 @@ Terraform creation of AWS API Gateway, Lambda, Cognito
 - confirm using command `signup-confirm.sh`
 - generate token using command `source get-token.sh`, that exports it to env TEST_TOKEN
 - previos commands can be combined by running `source login.sh`
-- test create API using command `test-create.sh`
+- test create API using command `source test-create.sh`
+- delete created item using command `source test-delete.sh`, it uses stored TODO_ID_LAST env
