@@ -13,3 +13,11 @@ output "delete_todo_lambda_invoke_arn" {
 output "delete_todo_lambda_function_name" {
   value = aws_lambda_function.lambda_delete_todo.function_name
 }
+
+output "get_todos_lambda_invoke_arn" {
+  value = aws_lambda_function.lambda_get_todos.invoke_arn
+}
+
+output "get_todos_lambda_function_name" {
+  value = aws_lambda_function.lambda_get_todos.function_name
+}

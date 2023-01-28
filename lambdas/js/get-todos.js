@@ -1,4 +1,5 @@
 const AWS = require("aws-sdk");
+
 const TODO_TABLE = process.env.TODO_TABLE;
 
 const documentClient = new AWS.DynamoDB.DocumentClient();

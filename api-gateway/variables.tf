@@ -33,3 +33,11 @@ variable "delete_todo_lambda_invoke_arn" {
 variable "delete_todo_lambda_function_name" {
   type = string
 }
+
+variable "get_todos_lambda_invoke_arn" {
+  type = string
+}
+
+variable "get_todos_lambda_function_name" {
+  type = string
+}

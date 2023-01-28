@@ -46,4 +46,6 @@ module "todo_api" {
   create_todo_lambda_function_name = module.todo_lambdas.create_todo_lambda_function_name
   delete_todo_lambda_invoke_arn    = module.todo_lambdas.delete_todo_lambda_invoke_arn
   delete_todo_lambda_function_name = module.todo_lambdas.delete_todo_lambda_function_name
+  get_todos_lambda_invoke_arn    = module.todo_lambdas.get_todos_lambda_invoke_arn
+  get_todos_lambda_function_name = module.todo_lambdas.get_todos_lambda_function_name
 }
