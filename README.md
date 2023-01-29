@@ -1,11 +1,13 @@
 # aws-iac
-Terraform creation of AWS API Gateway, Lambda, Cognito
+Serverless Infrastructure creation for AWS
+
+Terraform creation of REST API: AWS API Gateway, Lambda, Cognito, DynamoDB
 
 ### Instructions
-- install Node modules in util_layer/nodejs with command `npm install`
+- install Node modules in `lambdas/js` with command `npm install`
 - export AWS profile
-- terraform plan
-- terraform apply
+- `terraform plan`
+- `terraform apply --auto-approve`
 - create user using command `signup.sh`
 - confirm using command `signup-confirm.sh`
 - generate token using command `source get-token.sh`, that exports it to env TEST_TOKEN
