@@ -47,8 +47,7 @@ resource "aws_cognito_user_pool" "todo_user_pool" {
 
 resource "aws_cognito_user_pool_client" "todo_user_pool_client" {
   name                = "todoUserPoolClient"
-  explicit_auth_flows = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
-
+  explicit_auth_flows = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH"]
   user_pool_id = aws_cognito_user_pool.todo_user_pool.id
 }
 

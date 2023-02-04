@@ -15,5 +15,9 @@ module.exports.handler = async (event, context) => {
   return {
     statusCode: 200,
     body: JSON.stringify(Items),
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true
+    }
   };
 };

@@ -5,7 +5,7 @@ Terraform creation of REST API: AWS API Gateway, Lambda, Cognito, DynamoDB
 
 ### Instructions
 - install Node modules in `lambdas/js` with command `npm install`
-- export AWS profile
+- export AWS_PROFILE=<profile-name>
 - `terraform plan`
 - `terraform apply --auto-approve`
 - create user using command `signup.sh`
