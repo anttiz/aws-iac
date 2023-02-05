@@ -22,26 +22,6 @@ resource "aws_api_gateway_deployment" "api_create_deployment" {
   }
 }
 
-resource "aws_api_gateway_deployment" "api_delete_deployment" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api.id
-  stage_name  = "DEV"
-  depends_on  = [aws_api_gateway_method.delete_todo_api_method]
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_api_gateway_deployment" "api_get_todos_deployment" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api.id
-  stage_name  = "DEV"
-  depends_on  = [aws_api_gateway_method.get_todos_api_method]
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
 resource "aws_iam_role_policy" "dynamodb-lambda-policy" {
   name = "dynamodb_lambda_policy"
   role = aws_iam_role.lambda_exec.id

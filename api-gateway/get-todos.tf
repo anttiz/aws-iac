@@ -45,7 +45,7 @@ resource "aws_lambda_permission" "apigw_get_todos_lambda_permission" {
 
 # cors
 # OPTIONS HTTP method.
-resource "aws_api_gateway_method" "options" {
+resource "aws_api_gateway_method" "get_todos_options" {
   rest_api_id      = aws_api_gateway_rest_api.rest_api.id
   resource_id      = aws_api_gateway_resource.get_todos_resource.id
   http_method      = "OPTIONS"
@@ -54,10 +54,10 @@ resource "aws_api_gateway_method" "options" {
 }
 
 # OPTIONS method response.
-resource "aws_api_gateway_method_response" "options" {
+resource "aws_api_gateway_method_response" "get_todos_options" {
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   resource_id = aws_api_gateway_resource.get_todos_resource.id
-  http_method = aws_api_gateway_method.options.http_method
+  http_method = aws_api_gateway_method.get_todos_options.http_method
   status_code = "200"
   response_models = {
     "application/json" = "Empty"
@@ -70,7 +70,7 @@ resource "aws_api_gateway_method_response" "options" {
 }
 
 # OPTIONS integration.
-resource "aws_api_gateway_integration" "options" {
+resource "aws_api_gateway_integration" "get_todos_options" {
   rest_api_id          = aws_api_gateway_rest_api.rest_api.id
   resource_id          = aws_api_gateway_resource.get_todos_resource.id
   http_method          = "OPTIONS"
@@ -82,14 +82,35 @@ resource "aws_api_gateway_integration" "options" {
 }
 
 # OPTIONS integration response.
-resource "aws_api_gateway_integration_response" "options" {
+resource "aws_api_gateway_integration_response" "get_todos_options" {
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   resource_id = aws_api_gateway_resource.get_todos_resource.id
-  http_method = aws_api_gateway_integration.options.http_method
+  http_method = aws_api_gateway_integration.get_todos_options.http_method
   status_code = "200"
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
     "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS'"
     "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  }
+}
+
+# deployment
+resource "aws_api_gateway_deployment" "api_get_todos_deployment" {
+  rest_api_id = aws_api_gateway_rest_api.rest_api.id
+  stage_name  = "DEV"
+  depends_on  = [aws_api_gateway_method.get_todos_api_method]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_api_gateway_deployment" "api_get_todos_options_deployment" {
+  rest_api_id = aws_api_gateway_rest_api.rest_api.id
+  stage_name  = "DEV"
+  depends_on  = [aws_api_gateway_method.get_todos_options]
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
