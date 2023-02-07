@@ -22,5 +22,12 @@ module.exports.handler = async (event, context) => {
     .promise();
 
   // return the created object
-  return { statusCode: 200, body: JSON.stringify(newTodo) };
+  return {
+    statusCode: 200,
+    body: JSON.stringify(newTodo),
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
+  };
 };

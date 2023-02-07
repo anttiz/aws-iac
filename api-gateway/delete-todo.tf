@@ -98,7 +98,8 @@ resource "aws_api_gateway_integration_response" "delete_todo_options" {
 resource "aws_api_gateway_deployment" "api_delete_deployment" {
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   stage_name  = "DEV"
-  depends_on  = [aws_api_gateway_method.delete_todo_api_method]
+  depends_on = [aws_api_gateway_method.delete_todo_api_method,
+  aws_api_gateway_integration.delete_todo_api_integration]
 
   lifecycle {
     create_before_destroy = true
@@ -108,7 +109,8 @@ resource "aws_api_gateway_deployment" "api_delete_deployment" {
 resource "aws_api_gateway_deployment" "api_delete_options_deployment" {
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   stage_name  = "DEV"
-  depends_on  = [aws_api_gateway_method.delete_todo_options_api_method]
+  depends_on = [aws_api_gateway_method.delete_todo_options_api_method,
+  aws_api_gateway_integration.delete_todo_options]
 
   lifecycle {
     create_before_destroy = true

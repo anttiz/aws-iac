@@ -98,7 +98,8 @@ resource "aws_api_gateway_integration_response" "get_todos_options" {
 resource "aws_api_gateway_deployment" "api_get_todos_deployment" {
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   stage_name  = "DEV"
-  depends_on  = [aws_api_gateway_method.get_todos_api_method]
+  depends_on  = [aws_api_gateway_method.get_todos_api_method,
+    aws_api_gateway_integration.get_todos_api_integration]
 
   lifecycle {
     create_before_destroy = true
@@ -108,7 +109,8 @@ resource "aws_api_gateway_deployment" "api_get_todos_deployment" {
 resource "aws_api_gateway_deployment" "api_get_todos_options_deployment" {
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   stage_name  = "DEV"
-  depends_on  = [aws_api_gateway_method.get_todos_options]
+  depends_on  = [aws_api_gateway_method.get_todos_options,
+    aws_api_gateway_integration.get_todos_options]
 
   lifecycle {
     create_before_destroy = true
