@@ -10,34 +10,27 @@ variable "aws_region" {
 
 variable "api_status_response" {
   description = "API http status response"
-  type        = list(string)
-  default     = ["200", "500"]
+  type = list(object({
+    status_code = string
+    index       = number
+  }))
+  default = [{ status_code : "200", index : 0 }, { status_code : "500", index : 0 },
+    { status_code : "200", index : 1 }, { status_code : "500", index : 1 },
+  { status_code : "200", index : 2 }, { status_code : "500", index : 2 }]
 }
 
 variable "dynamodb_table_arn" {
   type = string
 }
 
-variable "create_todo_lambda_invoke_arn" {
-  type = string
+variable "lambda_invoke_arn" {
+  type = list(string)
 }
 
-variable "create_todo_lambda_function_name" {
-  type = string
+variable "lambda_function_name" {
+  type = list(string)
 }
 
-variable "delete_todo_lambda_invoke_arn" {
-  type = string
-}
-
-variable "delete_todo_lambda_function_name" {
-  type = string
-}
-
-variable "get_todos_lambda_invoke_arn" {
-  type = string
-}
-
-variable "get_todos_lambda_function_name" {
-  type = string
+variable "lambda_names" {
+  type = list(string)
 }

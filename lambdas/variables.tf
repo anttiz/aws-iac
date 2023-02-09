@@ -5,3 +5,7 @@ variable "dynamodb_table_name" {
 variable "lambda_exec_arn" {
   type = string
 }
+
+variable "lambda_names" {
+  type = list(string)
+}

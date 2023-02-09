@@ -8,6 +8,7 @@ Terraform creation of REST API: AWS API Gateway, Lambda, Cognito, DynamoDB
 - export AWS_PROFILE=<profile-name>
 - `terraform plan`
 - `terraform apply --auto-approve`
+- It is possible that apply needs to be done twice
 - create user using command `signup.sh`
 - confirm using command `signup-confirm.sh`
 - generate token using command `source get-token.sh`, that exports it to env TEST_TOKEN

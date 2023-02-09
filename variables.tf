@@ -31,3 +31,13 @@ variable "todo_email" {
   type=string
   default="testaaja@abc.com"
 }
+
+variable "lambda_names" {
+  type = list(string)
+  default = ["create-todo", "delete-todo", "get-todos"]
+}
+
+variable "status_codes" {
+  type = list(string)
+  default = ["200", "500"]
+}
