@@ -34,3 +34,11 @@ variable "lambda_function_name" {
 variable "lambda_names" {
   type = list(string)
 }
+
+variable "paths" {
+  type = list(string)
+}
+
+variable "methods" {
+  type = list(string)
+}

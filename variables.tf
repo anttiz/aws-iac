@@ -34,7 +34,17 @@ variable "todo_email" {
 
 variable "lambda_names" {
   type = list(string)
-  default = ["create-todo", "delete-todo", "get-todos"]
+  default = ["create-todo", "update-todo", "delete-todo", "get-todos"]
+}
+
+variable "paths" {
+  type = list(string)
+  default = [ "create", "update", "delete", "get"]
+}
+
+variable "methods" {
+  type = list(string)
+  default = [ "POST", "PUT", "DELETE", "GET"]
 }
 
 variable "status_codes" {

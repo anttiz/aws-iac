@@ -38,6 +38,8 @@ module "todo_lambdas" {
 
 module "todo_api" {
   lambda_names     = var.lambda_names
+  paths            = var.paths
+  methods          = var.methods
   source           = "./api-gateway"
   cognito_user_arn = module.todo_cognito.todo_cognito_user_pool_arn
   api_status_response = flatten([

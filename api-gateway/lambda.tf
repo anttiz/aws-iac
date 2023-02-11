@@ -1,13 +1,3 @@
-variable "paths" {
-  type = list(string)
-  default = [ "create", "delete", "get"]
-}
-
-variable "methods" {
-  type = list(string)
-  default = [ "POST", "DELETE", "GET"]
-}
-
 resource "aws_api_gateway_resource" "todo_resource" {
   count = length(var.lambda_names)
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
@@ -115,8 +105,6 @@ resource "aws_api_gateway_deployment" "api_deployment" {
   count = length(var.lambda_names)
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   stage_name  = "DEV"
-  # depends_on = [aws_api_gateway_method.todo_api_method[count.index],
-  # aws_api_gateway_integration.todo_api_integration[count.index]]
 
   lifecycle {
     create_before_destroy = true
@@ -127,8 +115,6 @@ resource "aws_api_gateway_deployment" "api_options_deployment" {
   count = length(var.lambda_names)
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   stage_name  = "DEV"
-  # depends_on = [aws_api_gateway_method.todo_options_api_method[count.index],
-  # aws_api_gateway_integration.todo_options[count.index]]
 
   lifecycle {
     create_before_destroy = true
