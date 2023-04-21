@@ -43,6 +43,13 @@ resource "aws_cognito_user_pool" "todo_user_pool" {
       max_length = 256
     }
   }
+
+  account_recovery_setting {
+    recovery_mechanism {
+      priority = 1
+      name = "verified_email"
+    }
+  }
 }
 
 resource "aws_cognito_user_pool_client" "todo_user_pool_client" {
